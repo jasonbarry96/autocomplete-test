@@ -75,7 +75,7 @@ app.post("/search", async ({ body }, res) => {
   }
 });
 
-// Search for facet values endpoint
+/* Search for facet values endpoint
 app.post("/sffv", async ({ body }, res) => {
   try {
     const { requests } = body;
@@ -84,7 +84,7 @@ app.post("/sffv", async ({ body }, res) => {
   } catch (error) {
     return next(error);
   }
-});
+});*/
 
 app.listen(port, () => {
   console.log(`Server is up on Port ${port}`);

@@ -47,9 +47,18 @@ const autocompleteSearchBox = instantsearch.connectors.connectSearchBox(
               }
             }
           ]
-        }).then(([suggestions]) => {
+        }).then(([items]) => {
           return [
-            {
+          {
+            transformItems(items) {
+              return items.map((item) => {
+                return {
+                  ...item,
+                  // hydrate with data here
+                  frontendCustomData: "hydratedInFrontend"
+                };
+              });
+            },
               templates: {
                 item: `
             <article>
@@ -74,7 +83,7 @@ const search = instantsearch({
 
 search.addWidgets([
   autocompleteSearchBox({
-    container: "#searchbox"
+    container: "#autocomplete"
   }) /*,
   instantsearch.widgets.hits({
     container: "#hits",
