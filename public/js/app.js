@@ -1,6 +1,7 @@
 console.log("Client side JS file loaded");
 const { autocomplete, getAlgoliaResults } = window['@algolia/autocomplete-js'];
-//const { getAlgoliaResults } = window['@algolia/autocomplete-preset-algolia'];
+
+ const h = window['preact'];
 // create custom client
 const searchClient = {
   search(requests) {
@@ -27,51 +28,40 @@ const autocompleteSearchBox = instantsearch.connectors.connectSearchBox(
     }
 
     autocomplete({
-      container: props.widgetParams.container,
+      container: '#autocomplete',
       showCompletion: true,
       openOnFocus: true,
       initialState: {
-        query: props.query
-      },
-      onSubmit({ state }) {
-        props.refine(state.query);
-      },
-      getSources({ query }) {
-        return getAlgoliaResults({
-          searchClient,
-          queries: [
-            {
-              indexName: "instant_search",
-              query,
-              params: {
-                hitsPerPage: 5
+         query: props.query
+       },
+       onSubmit({ state }) {
+         props.refine(state.query);
+       },
+      getSources() {
+        return [
+        {
+        getItems({ query }) {
+          return getAlgoliaResults({
+            searchClient,
+            queries: [
+              {
+                indexName: "instant_search",
+                query,
+                params: {
+                  hitsPerPage: 5
+                }
               }
-            }
-          ]
-        })/*.then(([items]) => {
-          return [
-          {
-            transformItems(items) {
-              return items.map((item) => {
-                return {
-                  ...item,
-                  // hydrate with data here
-                  frontendCustomData: "hydratedInFrontend"
-                };
-              });
-            },
-              templates: {
-                item: `
-            <article>
-                <h1>{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}</h1>
-                <p>Custom: {{ backendCustomData }}</p>
-                <p>Custom: {{ frontendCustomData }}</p>
-            </article>
-            `
-              }
-            }
-          ];
-        });*/
+            ]
+          })
+        },
+        templates: {
+          item({ item }) {
+            //return h(<div>{item.name}</div>);
+            return `${item.name}, Price: ${item.backendCustomData }`;
+          },
+        },
+      }
+      ];
       }
     });
   }

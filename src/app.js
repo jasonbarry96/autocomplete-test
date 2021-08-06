@@ -15,7 +15,7 @@ dotenvParseVariables(
     silent: process.env.APP_ENV === "production",
     errorOnMissing: true,
     // also use process.env to fill variables in, only in production
-    includeProcessEnv: process.env.APP_ENV === "production"
+    includeProcessEnv: process.env.APP_ENV === "production",
   })
 );
 
@@ -63,11 +63,11 @@ app.post("/search", async ({ body }, res) => {
               ...hit,
               // hydrate with data here
               // `getCustomDataBackend()` is a proxy for retrieving data from your own database
-              backendCustomData: getCustomDataBackend()
+              backendCustomData: getCustomDataBackend(),
             };
-          })
+          }),
         };
-      })
+      }),
     };
     res.status(200).send(results);
   } catch (error) {
