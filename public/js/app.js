@@ -1,5 +1,6 @@
 console.log("Client side JS file loaded");
-
+const { autocomplete, getAlgoliaResults } = window['@algolia/autocomplete-js'];
+//const { getAlgoliaResults } = window['@algolia/autocomplete-preset-algolia'];
 // create custom client
 const searchClient = {
   search(requests) {
@@ -47,7 +48,7 @@ const autocompleteSearchBox = instantsearch.connectors.connectSearchBox(
               }
             }
           ]
-        }).then(([items]) => {
+        })/*.then(([items]) => {
           return [
           {
             transformItems(items) {
@@ -70,7 +71,7 @@ const autocompleteSearchBox = instantsearch.connectors.connectSearchBox(
               }
             }
           ];
-        });
+        });*/
       }
     });
   }
