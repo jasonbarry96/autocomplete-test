@@ -1,13 +1,13 @@
-# algolia-backend-instantsearch-js-demo
+# backend-autocomplete
 
-Node.js and Express demo for backend InstantSearch
+Node.js and Express demo for backend Autocomplete - using InstantSearch.js
 
 # Running Locally
 
 1. Clone the repo:
 
 ```bash
-$ git clone https://github.com/agdavid/algolia-backend-instantsearch-js-demo.git
+$ git clone https://github.com/jasonbarry96/autocomplete-test.git
 ```
 
 2. Navigate into the root folder and install the node modules:
