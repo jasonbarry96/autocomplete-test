@@ -7,7 +7,7 @@ Node.js and Express demo for backend Autocomplete - using InstantSearch.js
 1. Clone the repo:
 
 ```bash
-$ git clone https://github.com/jasonbarry96/autocomplete-test.git
+$ git clone https://github.com/jasonbarry96/backend-autocomplete.git
 ```
 
 2. Navigate into the root folder and install the node modules:
